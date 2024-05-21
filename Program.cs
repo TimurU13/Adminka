@@ -18,6 +18,10 @@ if (app.Environment.IsDevelopment())
 // Удалите или закомментируйте следующую строку
 // app.UseHttpsRedirection();
 
+// Добавление Kestrel конфигурации из appsettings.json
+var port = builder.Configuration.GetValue<int>("Kestrel:Endpoints:Http:Url").Split(':').Last();
+app.Urls.Add($"http://*:{port}");
+
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
