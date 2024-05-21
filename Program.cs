@@ -19,7 +19,8 @@ if (app.Environment.IsDevelopment())
 // app.UseHttpsRedirection();
 
 // Добавление Kestrel конфигурации из appsettings.json
-var port = builder.Configuration.GetValue<int>("Kestrel:Endpoints:Http:Url").Split(':').Last();
+var url = builder.Configuration.GetValue<string>("Kestrel:Endpoints:Http:Url");
+var port = url.Split(':').Last();
 app.Urls.Add($"http://*:{port}");
 
 var summaries = new[]
